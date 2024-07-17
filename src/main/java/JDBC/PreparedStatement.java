@@ -1,3 +1,5 @@
+package JDBC;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,6 +18,10 @@ public class PreparedStatement {
         try{
             connection = DriverManager.getConnection(url,kullaniciadi,sifre);
 
+          String tablo = "CREATE TABLE ad_soyad (`tckn` VARCHAR(11) NOT NULL,`ad` VARCHAR(45) NOT NULL,`soyad` VARCHAR(45) NOT NULL, PRIMARY KEY (`tckn`))";
+
+          preparedStatement = connection.prepareStatement(tablo);
+          preparedStatement.executeUpdate();
 
             String ekleme = "INSERT INTO ad_soyad (TCKN, ad, soyad) VALUES(?,?,?)" ;
             preparedStatement = (java.sql.PreparedStatement) connection.prepareStatement(ekleme);
